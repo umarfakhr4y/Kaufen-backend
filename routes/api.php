@@ -2,6 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 $url = "App\Http\Controllers";
 
@@ -25,6 +29,8 @@ Route::post('/login', 'App\Http\Controllers\UserController@login')->middleware('
 
 Route::post('/email/resend',$url . '\VerificationApiController@resend')->name('verification.resend');   
 Route::get('/email/verify/{id}', $url .'\VerificationApiController@verify')->name('verification.verify');
+Route::post('password/email', 'App\Http\Controllers\ResetPasswordController@forgot');
+Route::post('password/reset', 'App\Http\Controllers\ResetPasswordController@reset');
 
 
 // All Users
@@ -90,4 +96,13 @@ Route::group(['middleware' => ['auth:api', 'role:penjual']], function() {
     Route::put('/barang-penjual/stock/{id}', 'App\Http\Controllers\BarangController@decStock');
     Route::put('/barang-koperasi/stock/{id}', 'App\Http\Controllers\KoperasiController@decStock');
 });
+
+// // Reset Password Link Send 
+// Route::post('/forgot-password', 'App\Http\Controllers\ResetPasswordController@linkReset')->name('password.email');
+
+// // Password Form
+// Route::get('/reset-password/{token}','App\Http\Controllers\ResetPasswordController@formReset')->name('password.reset');
+
+// // Reseting Password
+// Route::post('/reset-password', 'App\Http\Controllers\ResetPasswordController@resetPass')->name('password.update');
 

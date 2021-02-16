@@ -49,7 +49,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'email_ _at' => 'datetime',
     ];
 
     public function data()
