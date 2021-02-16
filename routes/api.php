@@ -55,7 +55,7 @@ Route::group(['middleware' => 'auth:api'], function(){
 
 // REKAPAN
     Route::get('/barang-koperasi/show', 'App\Http\Controllers\KoperasiController@index');           // Koperasi
-    Route::get('/barang-penjual/show', 'Aapp\Http\Controllers\BarangController@index');              // Barang Titipan
+    Route::get('/barang-penjual/show', 'App\Http\Controllers\BarangController@index');              // Barang Titipan
     Route::get('/loan/show', 'App\Http\Controllers\DepositController@index');                       // Peminjaman
     Route::get('/nabung/show', 'App\Http\Controllers\DepositController@index');                     // Tabungan
     
