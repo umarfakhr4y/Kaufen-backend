@@ -75,7 +75,7 @@ class DepositController extends Controller
                 "message" => "id Not Found"
             ], 404);
         }
-        return Deposit::where('id',$id)->with('saver')->get();
+        return Deposit::where('id',$id)->get();
     }
 
     /**
