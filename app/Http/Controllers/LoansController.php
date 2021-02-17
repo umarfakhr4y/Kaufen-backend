@@ -75,7 +75,7 @@ class LoansController extends Controller
                 "message" => "id Not Found"
             ], 404);
         }
-        return Loans::where('id',$id)->with('saver')->get();    
+        return Loans::where('id',$id)->get();    
     }
 
     /**

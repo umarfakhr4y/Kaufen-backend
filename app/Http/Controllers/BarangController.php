@@ -80,7 +80,7 @@ class BarangController extends Controller
                 "message" => "id Not Found"
             ], 404);
         }
-        return Barang::where('id',$id)->with('saver')->get();
+        return Barang::where('id',$id)->get();
     }
 
     /**
