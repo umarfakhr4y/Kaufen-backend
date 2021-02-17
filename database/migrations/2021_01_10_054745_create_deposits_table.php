@@ -14,15 +14,16 @@ class CreateDepositsTable extends Migration
     public function up()
     {
         Schema::create('deposits', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
             $table->string("name", 191)->foreignId();
-            $table->integer("total");                    
-            $table->timestamps();            
+            $table->integer("total");    
+            $table->bigInteger('user_id')->unsigned();     
+            $table->timestamps();      
             $table->foreign('user_id')
             ->references('id')
             ->on('users')
-            ->onDelete('cascade');
+            ->onDelete('cascade');              
         });
     }
 

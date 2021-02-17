@@ -13,18 +13,21 @@ class CreateDatasTable extends Migration
      */
     public function up()
     {
-        Schema::create('datas', function (Blueprint $table) {            
+        Schema::create('datas', function (Blueprint $table) { 
+            // $table->bigIncrements('id');
+            $table->engine = 'InnoDB';
             $table->string("name", 191)->unique();
             $table->string("alamat");
             $table->string("no_telp");
             $table->dateTime("tanggal_lahir");
             // $table->string("posisi", 191);
-            $table->bigInteger("user_id")->unsigned();         
+            $table->bigInteger("user_id")->unsigned();     
             $table->timestamps();
             $table->foreign('user_id')
             ->references('id')
             ->on('users')
-            ->onDelete('cascade');
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
             
         });
     }

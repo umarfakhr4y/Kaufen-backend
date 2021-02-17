@@ -51,13 +51,15 @@ class DataController extends Controller
      */
     public function store(Request $request)
     {
+        $getuser = Auth::user();
+        $userId = $getuser['id'];
         $save = new Data;
+        $save->user_id = $userId;
         $save->name = $request->name;
         $save->alamat = $request->alamat;
         $save->no_telp = $request->no_telp;
         $save->tanggal_lahir = $request->tanggal_lahir;
         // $save->posisi = $request->posisi;
-        $save->user_id = $request->user_id;
         
         if ($save->save()) {
             return ["status" => "Berhasi Menyimpan Data", 201];

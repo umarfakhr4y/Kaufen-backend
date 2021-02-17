@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Data;
 use App\Models\Deposit;
 use Illuminate\Http\Request;
 
@@ -45,12 +46,13 @@ class DepositController extends Controller
      */
     public function store(Request $request)
     {
-        $getuser = Auth::user();
-        $userId = $getuser['id'];
-        $deposit = new Deposit;
-        $deposit->user_id = $userId;
+        // $getuser = Auth::user();
+        // $getname = $getuser['name'];
+        $deposit = new Deposit;       
+        $deposit->user_id = $request->user_id;
         $deposit->name = $request->name;
         $deposit->total = $request->total;
+        // $deposit->data_name = $request->data_name;
         if ($deposit->save()) {
             return ["status" => "Berhasil Menyimpan Data"];
         } else {
