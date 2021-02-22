@@ -25,6 +25,8 @@ class UserController extends Controller
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
             $user = Auth::user();
             $success['token'] = $user->createToken('nApp')->accessToken;
+            $success['role'] = $user->getRoleNames();
+
             return response()->json(['success' => $success], $this->successStatus);
         }
         else {
@@ -137,23 +139,5 @@ class UserController extends Controller
             return ["status" => "Gagal Mengupdate Data"];
         }
         return back();
-    }   
-
-    public function updatePass(Request $request, User $user)
-    { 
-        $getuser = Auth::user();
-        $userId = $getuser['id'];
-        // $userCpass = $getuser['c_password'];
-        $update = $user->find($userId)->first();       
-        $update->password = Hash::make($request->password);              
-        // $update['c_password']  = 'same:password';
-        if ($update->save()) {
-            return ["status" => "Berhasi Mengubah Password"];
-        }  else {
-            return ["status" => "Gagal Mengubah Password"];
-        }
-        return back();
-    }   
-
-
+    }      
 }

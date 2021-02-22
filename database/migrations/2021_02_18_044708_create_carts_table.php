@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBarangsTable extends Migration
+class CreateCartsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,20 @@ class CreateBarangsTable extends Migration
      */
     public function up()
     {
-        Schema::create('barangs', function (Blueprint $table) {
+        Schema::create('carts', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
-            $table->string("name", 191)->foreignId();
-            $table->string("name_barang", 191);
-            $table->integer("stock");
-            $table->integer("dec_stock")->nullable();
-            $table->string("jenis", 191);
-            $table->integer("harga");
+            $table->foreignId('barang_id');
+            $table->string('name');
+            $table->string('jenis');
+            $table->integer('stock');
+            $table->integer('harga');
+            $table->decimal('total',10, 2);
             $table->timestamps();
             $table->foreign('user_id')
             ->references('id')
             ->on('users')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
+            ->onDelete('cascade');            
         });
     }
 
@@ -38,6 +37,6 @@ class CreateBarangsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('barangs');
+        Schema::dropIfExists('carts');
     }
 }

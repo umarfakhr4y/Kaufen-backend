@@ -24,7 +24,8 @@ class CreateKoperasisTable extends Migration
         $table->foreign('user_id')
         ->references('id')
         ->on('users')
-        ->onDelete('cascade');
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
         });
     }
 

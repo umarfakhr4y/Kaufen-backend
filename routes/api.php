@@ -40,8 +40,9 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/barang-koperasi/history', 'App\Http\Controllers\KoperasiController@history');      // History Barang Koperasi
 
     // Update User
-        Route::put('/user/update-profile', 'App\Http\Controllers\UserController@updateProf');       // Update Profile
-        Route::put('/user/update-pass', 'App\Http\Controllers\UserController@updatePass');          // Change Password
+        Route::put('/user/update-profile', 'App\Http\Controllers\UserController@updateProf');       // Update Profile      
+        Route::get('change-password', 'App\Http\Controllers\ChangePasswordController@index');
+        Route::post('change-password', 'App\Http\Controllers\ChangePasswordController@store')->name('change.password'); // Change Password
 
     // Delete User
         Route::delete('/user/delete', 'App\Http\Controllers\UserController@delete');                // self deleting
@@ -93,8 +94,8 @@ Route::group(['middleware' => ['auth:api', 'role:admin']], function() {
 Route::group(['middleware' => ['auth:api', 'role:penjual']], function() {    
     Route::put('barang-koperasi-transaksi/update/{id}', 'App\Http\Controllers\KoperasiController@update'); // Transakasi Barang Koperasi
     Route::put('/barang-penjual-transaksi/update/{id}', 'App\Http\Controllers\BarangController@update');   // Transaksi Barang Titipan
-    Route::put('/barang-penjual/stock/{id}', 'App\Http\Controllers\BarangController@decStock');
-    Route::put('/barang-koperasi/stock/{id}', 'App\Http\Controllers\KoperasiController@decStock');
+    Route::put('/barang-penjual-transaksi/beli/{id}', 'App\Http\Controllers\BarangController@transaksi');   // Transaksi Barang Titipan
+    
 });
 
 // // Reset Password Link Send 

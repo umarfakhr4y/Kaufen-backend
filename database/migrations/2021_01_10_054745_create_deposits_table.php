@@ -23,7 +23,8 @@ class CreateDepositsTable extends Migration
             $table->foreign('user_id')
             ->references('id')
             ->on('users')
-            ->onDelete('cascade');              
+            ->onDelete('cascade')              
+            ->onUpdateelete('cascade');              
         });
     }
 
