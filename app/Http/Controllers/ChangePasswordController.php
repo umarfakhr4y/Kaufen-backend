@@ -36,7 +36,6 @@ class ChangePasswordController extends Controller
     public function index()
 
     {
-
         return response()->json(['halaman change password'], 201);
 
     } 
@@ -67,10 +66,9 @@ class ChangePasswordController extends Controller
 
         ]);
 
-
         User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
-
-        return response()->json(['succes edit password'], 200);
+            return response()->json(['succes edit password'], 200);
+    
 
     }
 }
