@@ -139,7 +139,7 @@ class KoperasiController extends Controller
      */
     public function transaksi(Request $request, $id)
     {
-        $transaksi = Barang::where('id', $id)->first();
+        $transaksi = Koperasi::where('id', $id)->first();
         // $transaksi->name = $request->name;
         // $transaksi->name_barang = $request->name_barang;
         // $transaksi->jenis = $request->jenis;
