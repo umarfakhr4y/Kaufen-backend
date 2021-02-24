@@ -147,7 +147,7 @@ class KoperasiController extends Controller
         $transaksi->stock =  $request->stock;
         // $transaksi->stock =  stock - dec_stock;
         // $transaksi->harga = $request->harga;  
-        if ($transaksi->update()) {
+        if ($transaksi->save()) {
             return response()->json(['Terbeli' => $transaksi], 201);
         }  else {
             return ["status" => "Gagal Mlakukan Transaksi"];
