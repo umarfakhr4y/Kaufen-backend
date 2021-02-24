@@ -126,20 +126,18 @@ class BarangController extends Controller
     public function transaksi(Request $request, $id)
     {
         $transaksi = Barang::where('id', $id)->first();
-        $transaksi->name = $request->name;
-        $transaksi->name_barang = $request->name_barang;
-        $transaksi->jenis = $request->jenis;
+        // $transaksi->name = $request->name;
+        // $transaksi->name_barang = $request->name_barang;
+        // $transaksi->jenis = $request->jenis;
         // $transaksi->stock = $request->('stock');
-        $transaksi->dec_stock = $request->dec_stock;
-        $transaksi->stock =  $request->stock->decrement('dec_stock');
+        $transaksi->stock =  $request->stock;
         // $transaksi->stock =  stock - dec_stock;
-        $transaksi->harga = $request->harga;  
-        if ($transaksi->save()) {
+        // $transaksi->harga = $request->harga;  
+        if ($transaksi->update()) {
             return response()->json(['Terbeli' => $transaksi], 201);
         }  else {
             return ["status" => "Gagal Mlakukan Transaksi"];
         }
-
     }
 
     /**
