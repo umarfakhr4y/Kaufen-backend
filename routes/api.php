@@ -94,7 +94,7 @@ Route::group(['middleware' => ['auth:api', 'role:admin']], function() {
 Route::group(['middleware' => ['auth:api', 'role:penjual']], function() {    
     Route::put('barang-koperasi-transaksi/update/{id}', 'App\Http\Controllers\KoperasiController@update'); // Transakasi Barang Koperasi
     Route::put('/barang-penjual-transaksi/update/{id}', 'App\Http\Controllers\BarangController@update');   // Transaksi Barang Titipan
-    // Route::put('/barang-penjual-transaksi/beli/{id}', 'App\Http\Controllers\BarangController@transaksi');   // Transaksi Barang Titipan
+    Route::put('/barang-koperasi/stock/{id}', 'App\Http\Controllers\BarangController@transaksi');   // Transaksi Barang koperasi
     Route::put('/barang-penjual/stock/{id}', 'App\Http\Controllers\BarangController@transaksi');   // Transaksi Barang Titipan
     
 });

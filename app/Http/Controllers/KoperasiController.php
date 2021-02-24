@@ -137,14 +137,20 @@ class KoperasiController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function decStock(Request $request, $id)
+    public function transaksi(Request $request, $id)
     {
-        $barang = Koperasi::where('id', $id)->first();        
-        $barang->stock = $request->stock;                  
-        if ($barang->save()) {
-            return ["status" => "Berhasi Mengubah Stock", 201];
+        $transaksi = Barang::where('id', $id)->first();
+        // $transaksi->name = $request->name;
+        // $transaksi->name_barang = $request->name_barang;
+        // $transaksi->jenis = $request->jenis;
+        // $transaksi->stock = $request->('stock');
+        $transaksi->stock =  $request->stock;
+        // $transaksi->stock =  stock - dec_stock;
+        // $transaksi->harga = $request->harga;  
+        if ($transaksi->update()) {
+            return response()->json(['Terbeli' => $transaksi], 201);
         }  else {
-            return ["status" => "Gagal Mengubah Stock"];
+            return ["status" => "Gagal Mlakukan Transaksi"];
         }
     }
 
