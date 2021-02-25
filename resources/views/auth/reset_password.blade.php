@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -70,10 +69,10 @@
 </head>
 <body>
 <div class="flex-center position-ref full-height">
-    <form class="form-container" action="api/password/reset" method="POST">
+    <form class="form-container" action="api/password/reset" method="POST" onsubmit="return valChange(event)">
         <h2>Forgot Password?</h2>
 
-        <input name="email" placeholder="Enter email" value="{{request()->get('email')}}">
+        <input hidden name="email" placeholder="Enter email" value="{{request()->get('email')}}">
         <input name="password" type="password" placeholder="Enter new password">
         <input name="password_confirmation" type="password" placeholder="Confirm new password">
         <input hidden name="token" placeholder="token" value="{{request()->get('token')}}">
@@ -81,5 +80,14 @@
         <button type="submit">Submit</button>
     </form>
 </div>
+
+<script>
+function valChange(e) {
+	if (e.target[0].value == '' || e.target[1].value == '' || e.target[2].value != e.target[1].value) {
+		alert('Harap isi Column Yang ksong!');
+		return false;
+	}
+}
+</script>
 </body>
 </html>
