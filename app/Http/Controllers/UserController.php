@@ -39,8 +39,9 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|min:8',
             'c_password' => 'required|same:password',
+            'image' => 'required|image:jpeg,png,jpg|max:2048',
             'role' => 'required'
         ]);
 
@@ -60,6 +61,17 @@ class UserController extends Controller
         if($input['role'] == 'penjual') {
             $user->assignRole('penjual');
         }
+        
+        $img = $request->file('image');
+        // $txt = $request->file('image')->guessExtension();
+        $name_file = time()."_".$img->getClientOriginalName();
+
+            // $imgUpload = new Image;
+            // $imgUpload->name = $request->name;
+            $input['image'] = $name_file;
+            $img->move(public_path().'/img', $name_file);    
+            User::create($input); 
+
 
         event(new Registered($user));
         $success['message'] = "Please verify your email that we've sent to your mailbox";

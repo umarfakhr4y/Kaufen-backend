@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             'email' => 'damar.rizki212@gmail.com',
             "email_verified_at" => now()->timezone('Asia/Jakarta'),
             'password' => Hash::make('123456789'),
+            'image' => 'img_profile/damar.jpg'
         ]);
 
         $damar->assignRole('admin');
@@ -29,6 +30,8 @@ class UserSeeder extends Seeder
             'email' => 'umarfakhr1y@gmail.com',
             "email_verified_at" => now()->timezone('Asia/Jakarta'),
             'password' => Hash::make('123456789'),
+            'image' => 'img_profile/umar.jpg'
+            
         ]);
 
         $umar->assignRole('admin');
@@ -38,6 +41,7 @@ class UserSeeder extends Seeder
             'email' => 'ibrahimahmad8896@gmail.com',
             "email_verified_at" => now()->timezone('Asia/Jakarta'),
             'password' => Hash::make('123456789'),
+            'image' => 'img_profile/baim.jpg'
         ]);
 
         $baim->assignRole('admin');
@@ -47,6 +51,7 @@ class UserSeeder extends Seeder
             'email' => 'akmalilhamstp@gmail.com',
             "email_verified_at" => now()->timezone('Asia/Jakarta'),
             'password' => Hash::make('123456789'),
+            'image' => 'img_profile/akmal.jpg'
         ]);
 
         $akmal->assignRole('admin');
@@ -56,6 +61,7 @@ class UserSeeder extends Seeder
             'email' => 'farhankhosyi@gmail.com',
             "email_verified_at" => now()->timezone('Asia/Jakarta'),
             'password' => Hash::make('123456789'),
+            'image' => 'img/Hands-Give.png'
         ]);
 
         $farhan->assignRole('admin');
@@ -65,6 +71,7 @@ class UserSeeder extends Seeder
             'email' => 'hanifflu12@gmail.com',
             "email_verified_at" => now()->timezone('Asia/Jakarta'),
             'password' => Hash::make('123456789'),
+            'image' => 'img_profile/hanif_fadhlu.jpg'
         ]);
 
         $padlu->assignRole('admin');
@@ -74,6 +81,7 @@ class UserSeeder extends Seeder
             'email' => 'erlanggadithya97@gmail.com',
             "email_verified_at" => now()->timezone('Asia/Jakarta'),
             'password' => Hash::make('123456789'),
+            'image' => 'img_profile/erlangga.jpg'
         ]);
 
         $bongga->assignRole('admin');
@@ -83,6 +91,7 @@ class UserSeeder extends Seeder
             'email' => 'm.hasanmunif@gmail.com',
             "email_verified_at" => now()->timezone('Asia/Jakarta'),
             'password' => Hash::make('123456789'),
+            'image' => 'img_profile/munif.jpg'
         ]);
 
         $ebed->assignRole('admin');
@@ -92,6 +101,7 @@ class UserSeeder extends Seeder
             'email' => 'kaufen.market@gmail.com',
             "email_verified_at" => now()->timezone('Asia/Jakarta'),
             'password' => Hash::make('123456789'),
+            'image' => 'img/kaufen_market.png'
         ]);
 
         $kaufen->assignRole('admin');
@@ -101,6 +111,7 @@ class UserSeeder extends Seeder
             'email' => 'anggota@role.test',
             "email_verified_at" => now()->timezone('Asia/Jakarta'),
             'password' => Hash::make('123456789'),
+            'image' => 'img/Hands-Give.png'
         ]);
 
         $anggota->assignRole('anggota');
@@ -110,6 +121,7 @@ class UserSeeder extends Seeder
             'email' => 'penjual@role.test',
             "email_verified_at" => now()->timezone('Asia/Jakarta'),
             'password' => Hash::make('123456789'),
+            'image' => 'img/Hands-Give.png'
         ]);
 
         $penjual->assignRole('penjual');
