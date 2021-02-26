@@ -50,6 +50,13 @@ class UserController extends Controller
         }
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
+        $img = $request->file('image');  
+        $name_file = time()."_".$img->getClientOriginalName();
+
+            // $imgUpload = new Image;
+            // $imgUpload->name = $request->name;
+            $input['image'] = $name_file;
+            $img->move(public_path().'/img_profile', $name_file); 
         $user = User::create($input);
         $userId = $user->id;
         if($input['role'] == 'admin') {
@@ -61,17 +68,6 @@ class UserController extends Controller
         if($input['role'] == 'penjual') {
             $user->assignRole('penjual');
         }
-        
-        $img = $request->file('image');
-        // $txt = $request->file('image')->guessExtension();
-        $name_file = time()."_".$img->getClientOriginalName();
-
-            // $imgUpload = new Image;
-            // $imgUpload->name = $request->name;
-            $input['image'] = $name_file;
-            $img->move(public_path().'/img', $name_file);    
-            User::create($input); 
-
 
         event(new Registered($user));
         $success['message'] = "Please verify your email that we've sent to your mailbox";
