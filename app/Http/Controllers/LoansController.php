@@ -45,10 +45,10 @@ class LoansController extends Controller
      */
     public function store(Request $request)
     {
-        $getuser = Auth::user();
-        $userId = $getuser['id'];
+        // $getuser = Auth::user();
+        // $userId = $getuser['id'];
         $loan = new Loans;
-        $loan->user_id = $userId;
+        $loan->user_id = $request->user_id;
         $loan->name = $request->name;
         $loan->total = $request->total;
         $loan->return = $request->return;

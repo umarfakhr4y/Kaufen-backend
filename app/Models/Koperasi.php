@@ -13,4 +13,8 @@ class Koperasi extends Model
     {
         return $this->belongsTo(User::class);        
     }
+
+    public function img(){
+		return $this->hasMany(Image::class, 'image_id');
+	}
 }

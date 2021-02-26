@@ -127,9 +127,9 @@ class DataController extends Controller
         
         $save = Data::where('name', $id)->first();
         $save->name = $request->name;
-        // $save->alamat = $request->alamat;
-        // $save->no_telp = $request->no_telp;
-        // $save->tanggal_lahir = $request->tanggal_lahir;
+        $save->alamat = $request->alamat;
+        $save->no_telp = $request->no_telp;
+        $save->tanggal_lahir = $request->tanggal_lahir;
         // $save->user_id = $request->user_id;       
 
         if ($save->save()) {

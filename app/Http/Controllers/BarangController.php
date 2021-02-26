@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Barang;
+use Illuminate\Support\Facades\Validator;
+use App\Models\Image;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -49,20 +51,63 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        $getuser = Auth::user();
-        $userId = $getuser['id'];
-        $barang = new Barang;
-        $barang->user_id = $userId;
-        $barang->name = $request->name;
-        $barang->name_barang = $request->name_barang;
-        $barang->jenis = $request->jenis;
-        $barang->stock = $request->stock;
-        $barang->harga = $request->harga;                  
-        if ($barang->save()) {
-            return ["status" => "Berhasi Menyimpan Data", 201];
-        }  else {
-            return ["status" => "Gagal Menyimpan Data"];
+        // $getuser = Auth::user();
+        // $userId = $getuser['id'];
+
+        // $barang = new Barang;
+        // $barang->user_id = $request->user_id;
+        // $barang->name = $request->name;
+        // $barang->name_barang = $request->name_barang;
+        // $barang->jenis = $request->jenis;
+        // $barang->stock = $request->stock;
+        // $barang->harga = $request->harga;
+
+        // if ($barang->save()) {
+        //     return ["status" => "Berhasi Menyimpan Data", 201];
+        // }  else {
+        //     return ["status" => "Gagal Menyimpan Data"];
+        // }
+
+        // $validator = Validator::make($request->all(), [
+        //     // "description" =>"required",
+        //     "image" => "required|image:jpeg,png,gif,svg|max:2048"
+        //     ]);
+        // if($validator->fails()) {
+        //     return response()->json(["error" => $validator->errors()], 500);
+        // }
+
+        $validator = Validator::make($request->all(), [            
+            "image" => "required|image:jpeg,png,jpg|max:2048"
+            ]);
+        if($validator->fails()) {
+            return response()->json(["error" => $validator->errors()], 500);
         }
+        $input = $request->all();
+        $input['user_id'] = $request->user_id;
+        $input['name'] = $request->name;
+        $input['name_barang'] = $request->name_barang;
+        $input['jenis'] = $request->jenis;
+        $input['stock'] = $request->stock;
+        $input['harga'] = $request->harga;
+
+        // $barang = Barang::save();
+
+        $img = $request->file('image');
+        // $txt = $request->file('image')->guessExtension();
+        $name_file = time()."_".$img->getClientOriginalName();
+
+            // $imgUpload = new Image;
+            // $imgUpload->name = $request->name;
+            $input['image'] = $name_file;
+            $img->move(public_path().'/img', $name_file);    
+            Barang::create($input); 
+
+            if ($input) {
+                return ["status" => "Berhasi Menyimpan Barang dengan Image", 201];
+            }  else {
+                return ["status" => "Gagal Menyimpan Barang"];
+            }
+            
     }
 
     /**

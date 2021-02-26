@@ -18,10 +18,10 @@ class CreateBarangsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->string("name", 191)->foreignId();
             $table->string("name_barang", 191);
-            $table->integer("stock");
-            $table->integer("dec_stock")->nullable();
+            $table->integer("stock");            
             $table->string("jenis", 191);
             $table->integer("harga");
+            $table->string("image");
             $table->timestamps();
             $table->foreign('user_id')
             ->references('id')

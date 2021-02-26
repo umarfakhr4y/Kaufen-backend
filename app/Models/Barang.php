@@ -8,6 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Barang extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'name',
+        'name_barang',
+        'stock',
+        'jenis',
+        'harga',
+        'image'
+    ];
     
     public function data()
     {
@@ -21,5 +31,9 @@ class Barang extends Model
 
     public function cart(){
 		return $this->hasMany(Cart::class, 'barang_id');
+	}
+
+    public function img(){
+		return $this->hasMany(Image::class, 'image_id');
 	}
 }
