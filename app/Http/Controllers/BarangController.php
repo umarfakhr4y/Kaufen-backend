@@ -154,16 +154,8 @@ class BarangController extends Controller
         $barang->jenis = $request->jenis;
         $barang->stock = $request->stock;
         $barang->harga = $request->harga;
-        $img = $request->file('image');
-        // $txt = $request->file('image')->guessExtension();
-        $name_file = time()."_".$img->getClientOriginalName();
-
-            // $imgUpload = new Image;
-            // $imgUpload->name = $request->name;
-            $barang['image'] = $name_file;
-            $img->move(public_path().'/img', $name_file);    
-            // Barang::create($input);                   
-        if ($barang->update()) {
+                          
+        if ($barang->save()) {
             return ["status" => "Berhasi Mengubah Data", 201];
         }  else {
             return ["status" => "Gagal Mengubah Data"];
