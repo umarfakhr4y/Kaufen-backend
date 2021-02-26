@@ -9,12 +9,19 @@ class Koperasi extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'jenis',
+        'stock',
+        'harga',
+        'image'
+
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);        
     }
 
-    public function img(){
-		return $this->hasMany(Image::class, 'image_id');
-	}
+    
 }

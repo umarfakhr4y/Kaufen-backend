@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Koperasi;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\StatusCode;
 use Carbon\Carbon;
@@ -53,19 +54,36 @@ class KoperasiController extends Controller
      */
     public function store(Request $request, User $user)
     {
-        $getuser = Auth::user();
-        $userId = $getuser['id'];
-        $koperasi = new Koperasi;
-        $koperasi->user_id = $userId;
-        $koperasi->name = $request->name;
-        $koperasi->jenis = $request->jenis;
-        $koperasi->stock = $request->stock;
-        $koperasi->harga = $request->harga;                  
-        if ($koperasi->save()) {
-            return ["status" => "Berhasi Menyimpan Data", 201];
-        }  else {
-            return ["status" => "Gagal Menyimpan Data"];
+        $validator = Validator::make($request->all(), [            
+            "image" => "required|image:jpeg,png,jpg|max:2048"
+            ]);
+        if($validator->fails()) {
+            return response()->json(["error" => $validator->errors()], 500);
         }
+        $input = $request->all();
+        $input['name'] = $request->name;
+        $input['jenis'] = $request->jenis;
+        $input['stock'] = $request->stock;
+        $input['harga'] = $request->harga;
+
+        // $barang = Barang::save();
+
+        $img = $request->file('image');
+        // $txt = $request->file('image')->guessExtension();
+        $name_file = time()."_".$img->getClientOriginalName();
+
+            // $imgUpload = new Image;
+            // $imgUpload->name = $request->name;
+            $input['image'] = $name_file;
+            $img->move(public_path().'/img', $name_file);    
+            Koperasi::create($input); 
+
+            if ($input) {
+                return ["status" => "Berhasi Menyimpan Barang dengan Image", 201];
+            }  else {
+                return ["status" => "Gagal Menyimpan Barang"];
+            }
+            
     }
 
     /**
@@ -115,10 +133,7 @@ class KoperasiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $koperasi = Koperasi::where('id',$id)->first();
-        $getuser = Auth::user();
-        $userId = $getuser['id'];
-        $koperasi->user_id = $userId;
+        $koperasi = Koperasi::where('id',$id)->first();     
         $koperasi->name = $request->name;
         $koperasi->jenis = $request->jenis;
         $koperasi->stock = $request->stock;
