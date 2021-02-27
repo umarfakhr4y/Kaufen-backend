@@ -99,7 +99,7 @@ class BarangController extends Controller
             // $imgUpload = new Image;
             // $imgUpload->name = $request->name;
             $input['image'] = $name_file;
-            $img->move(public_path().'/img', $name_file);    
+            $img->move(public_path('img'), $name_file);    
             Barang::create($input); 
 
             if ($input) {

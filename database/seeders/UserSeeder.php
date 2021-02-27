@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
             'email' => 'umarfakhr1y@gmail.com',
             "email_verified_at" => now()->timezone('Asia/Jakarta'),
             'password' => Hash::make('123456789'),
-            'image' => 'img_profile/umar.jpg'
+            'image' => 'umar.jpg'
             
         ]);
 
