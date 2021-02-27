@@ -56,7 +56,7 @@ class UserController extends Controller
             // $imgUpload = new Image;
             // $imgUpload->name = $request->name;
             $input['image'] = $name_file;
-            $img->move(public_path().'/img_profile', $name_file); 
+            $img->move(public_path('img_profile'), $name_file); 
         $user = User::create($input);
         $userId = $user->id;
         if($input['role'] == 'admin') {
