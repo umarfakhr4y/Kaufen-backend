@@ -11,7 +11,7 @@ class Barang extends Model
 
     protected $fillable = [
         'user_id',
-        'name',
+        'data_id',
         'name_barang',
         'stock',
         'jenis',

@@ -84,7 +84,7 @@ class BarangController extends Controller
         }
         $input = $request->all();
         $input['user_id'] = $request->user_id;
-        $input['name'] = $request->name;
+        $input['data_id'] = $request->data_id;
         $input['name_barang'] = $request->name_barang;
         $input['jenis'] = $request->jenis;
         $input['stock'] = $request->stock;

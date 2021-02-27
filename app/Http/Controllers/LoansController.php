@@ -49,6 +49,7 @@ class LoansController extends Controller
         // $userId = $getuser['id'];
         $loan = new Loans;
         $loan->user_id = $request->user_id;
+        $loan->data_id = $request->data_id;
         $loan->name = $request->name;
         $loan->total = $request->total;
         $loan->return = $request->return;
@@ -99,7 +100,7 @@ class LoansController extends Controller
     public function update(Request $request, $id)
     {
         $loan = Loans::where('id', $id)->first();
-        $loan->name = $request->name;
+        $loan->name = $request->name;        
         $loan->total = $request->total;
         $loan->return = $request->return;
         if ($loan->save()) {

@@ -50,6 +50,7 @@ class DepositController extends Controller
         // $getname = $getuser['name'];
         $deposit = new Deposit;       
         $deposit->user_id = $request->user_id;
+        $deposit->data_id = $request->data_id;
         $deposit->name = $request->name;
         $deposit->total = $request->total;
         // $deposit->data_name = $request->data_name;

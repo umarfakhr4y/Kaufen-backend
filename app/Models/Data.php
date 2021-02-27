@@ -10,7 +10,7 @@ class Data extends Model
 {
     use HasFactory, HasRoles;
 
-    protected $primaryKey = "name";
+    // protected $primaryKey = "name";
 
     protected $table = 'datas';
     
@@ -27,17 +27,17 @@ class Data extends Model
 
     public function loans()
     {       
-        return $this->hasMany(Loans::class, 'name');
+        return $this->hasMany(Loans::class, 'data_id');
     }
 
     public function deposit()
     {       
-        return $this->hasMany(Deposit::class, 'name');
+        return $this->hasMany(Deposit::class, 'data_id');
     }
 
     public function barang()
     {       
-        return $this->hasMany(Barang::class, 'name');
+        return $this->hasMany(Barang::class, 'data_id');
     }
 
     public function user()

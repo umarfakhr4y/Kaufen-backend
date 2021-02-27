@@ -16,7 +16,7 @@ class CreateDepositsTable extends Migration
         Schema::create('deposits', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
-            $table->string("name", 191)->foreignId();
+            $table->foreignId("data_id");
             $table->integer("total");    
             $table->bigInteger('user_id')->unsigned();     
             $table->timestamps();      
