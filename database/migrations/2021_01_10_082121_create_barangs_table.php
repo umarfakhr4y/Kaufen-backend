@@ -16,7 +16,7 @@ class CreateBarangsTable extends Migration
         Schema::create('barangs', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
-            $table->string("name", 191)->foreignId();
+            $table->string("name", 191);
             $table->string("name_barang", 191);
             $table->integer("stock");            
             $table->string("jenis", 191);

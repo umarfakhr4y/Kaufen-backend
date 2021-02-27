@@ -16,7 +16,7 @@ class CreateDatasTable extends Migration
         Schema::create('datas', function (Blueprint $table) { 
             // $table->bigIncrements('id');
             $table->engine = 'InnoDB';
-            $table->string("name", 191)->unique();
+            $table->string("name", 191);
             $table->string("alamat");
             $table->string("no_telp");
             $table->dateTime("tanggal_lahir");
