@@ -149,7 +149,7 @@ class BarangController extends Controller
     public function update(Request $request, $id)
     {
         $barang = Barang::where('id', $id)->first();
-        $barang->name = $request->name;
+        // $barang->name = $request->name;
         $barang->name_barang = $request->name_barang;
         $barang->jenis = $request->jenis;
         $barang->stock = $request->stock;

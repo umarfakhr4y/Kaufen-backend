@@ -51,7 +51,7 @@ class DepositController extends Controller
         $deposit = new Deposit;       
         $deposit->user_id = $request->user_id;
         $deposit->data_id = $request->data_id;
-        $deposit->name = $request->name;
+        // $deposit->name = $request->name;
         $deposit->total = $request->total;
         // $deposit->data_name = $request->data_name;
         if ($deposit->save()) {
@@ -100,7 +100,7 @@ class DepositController extends Controller
     public function update(Request $request, $id)
     {
         $deposit = Deposit::where('id', $id)->first();
-        $deposit->name = $request->name;
+        // $deposit->name = $request->name;
         $deposit->total = $request->total;
         if ($deposit->save()) {
             return ["status" => "Berhasil Mengupdate Data"];
