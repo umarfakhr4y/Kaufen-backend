@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Carbon\Carbon;
 use App\Models\Loans;
 use Illuminate\Http\Request;
 
@@ -108,6 +109,18 @@ class LoansController extends Controller
         } else {
             return ["status" => "Gagal Merubah Data"];
         }
+    }
+
+    public function history(User $user)
+    {
+        $getuser = Auth::user();
+        $userId = $getuser['id'];
+        $loan = $user->find($userId)->loan()->orderBy("id", "desc")->get("*");
+        $count = count($loan);
+        for ($i=0; $i < $count; $i++) {
+            $loan[$i]['created'] = Carbon::parse($loan[$i]['created_at'])->diffForHumans();
+        }
+        return response()->json(["message" => "success", "data" => $loan], 200);
     }
 
     /**

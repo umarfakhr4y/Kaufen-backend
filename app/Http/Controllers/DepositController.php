@@ -61,6 +61,18 @@ class DepositController extends Controller
         }
     }
 
+    public function history(User $user)
+    {
+        $getuser = Auth::user();
+        $userId = $getuser['id'];
+        $deposit = $user->find($userId)->deposit()->orderBy("id", "desc")->get("*");
+        $count = count($deposit);
+        for ($i=0; $i < $count; $i++) {
+            $deposit[$i]['created'] = Carbon::parse($deposit[$i]['created_at'])->diffForHumans();
+        }
+        return response()->json(["message" => "success", "data" => $deposit], 200);
+    }
+
     /**
      * Display the specified resource.
      *

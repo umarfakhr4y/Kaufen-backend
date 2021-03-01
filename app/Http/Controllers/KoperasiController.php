@@ -59,7 +59,7 @@ class KoperasiController extends Controller
             ]);
         if($validator->fails()) {
             return response()->json(["error" => $validator->errors()], 500);
-        }
+        }  
         $input = $request->all();
         $input['name'] = $request->name;
         $input['jenis'] = $request->jenis;

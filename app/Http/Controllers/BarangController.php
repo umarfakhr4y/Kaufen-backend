@@ -99,7 +99,7 @@ class BarangController extends Controller
             // $imgUpload = new Image;
             // $imgUpload->name = $request->name;
             $input['image'] = $name_file;
-            $img->move(public_path('img'), $name_file);    
+            $img->move(public_path().'/img', $name_file);
             Barang::create($input); 
 
             if ($input) {
@@ -109,6 +109,20 @@ class BarangController extends Controller
             }
             
     }
+
+
+    public function history(User $user)
+    {
+        $getuser = Auth::user();
+        $userId = $getuser['id'];
+        $barang = $user->find($userId)->barang()->orderBy("id", "desc")->get("*");
+        $count = count($barang);
+        for ($i=0; $i < $count; $i++) {
+            $barang[$i]['created'] = Carbon::parse($barang[$i]['created_at'])->diffForHumans();
+        }
+        return response()->json(["message" => "success", "data" => $barang], 200);
+    }
+
 
     /**
      * Display the specified resource.

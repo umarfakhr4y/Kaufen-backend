@@ -37,7 +37,13 @@ Route::post('password/reset', 'App\Http\Controllers\ResetPasswordController@rese
 Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/logout', 'App\Http\Controllers\UserController@logout');
     Route::get('user/detail', 'App\Http\Controllers\UserController@details');                       // Detail Current User
+    Route::get('user/{id}', 'App\Http\Controllers\UserController@getUserById');                       // Detail Current User
+    
+    // History
     Route::get('/barang-koperasi/history', 'App\Http\Controllers\KoperasiController@history');      // History Barang Koperasi
+    Route::get('/barang-penjual/history', 'App\Http\Controllers\BarangController@history');         // History Barang Koperasi
+    Route::get('/pinjam/history', 'App\Http\Controllers\LoansController@history');                  // History Loan
+    Route::get('/nabung/history', 'App\Http\Controllers\DepositController@history');                // Deposit Loan
 
     // Update User
         Route::put('/user/update-profile', 'App\Http\Controllers\UserController@updateProf');       // Update Profile      
@@ -48,7 +54,7 @@ Route::group(['middleware' => 'auth:api'], function(){
         Route::delete('/user/delete', 'App\Http\Controllers\UserController@delete');                // self deleting
 
     // Data Diri
-        Route::post('/data/data-diri', 'App\Http\Controllers\DataController@store');                // Add data diri    
+        Route::post('/data/data-diri', 'App\Http\Controllers\DataController@store');                  // Add data diri    
         //Route::get('/data/show', 'App\Http\Controllers\DataController@showSelf');                   // show data diri diambil dari user/detail
         Route::put('/data/edit', 'App\Http\Controllers\DataController@updateSelf');                   // show data diri
 
@@ -57,7 +63,7 @@ Route::group(['middleware' => 'auth:api'], function(){
 // REKAPAN
     Route::get('/barang-koperasi/show', 'App\Http\Controllers\KoperasiController@index');           // Koperasi
     Route::get('/barang-penjual/show', 'App\Http\Controllers\BarangController@index');              // Barang Titipan
-    Route::get('/loan/show', 'App\Http\Controllers\DepositController@index');                       // Peminjaman
+    Route::get('/pinjam/show', 'App\Http\Controllers\LoansController@index');                       // Peminjaman
     Route::get('/nabung/show', 'App\Http\Controllers\DepositController@index');                     // Tabungan
     
 });
@@ -70,6 +76,7 @@ Route::group(['middleware' => 'auth:api'], function(){
 // Admin Role
 Route::group(['middleware' => ['auth:api', 'role:admin']], function() {        
     Route::get('/user/{role}', 'App\Http\Controllers\UserController@getUsersByRole');               // Get All User By Role   
+    Route::get('/user/{id}', 'App\Http\Controllers\UserController@getUserByID');                    // Get User By ID
     Route::get('/users', 'App\Http\Controllers\UserController@allDetails');                         // Get All User With Data
     Route::post('/register', 'App\Http\Controllers\UserController@register');
 
@@ -79,8 +86,6 @@ Route::group(['middleware' => ['auth:api', 'role:admin']], function() {
     Route::resource('/barang-koperasi', 'App\Http\Controllers\KoperasiController'); 
     Route::resource('/barang-penjual', 'App\Http\Controllers\BarangController');
     Route::delete('/user/delete/{id}', 'App\Http\Controllers\UserController@deleteMember');         // Delete Member
-
-
 });
 
 
