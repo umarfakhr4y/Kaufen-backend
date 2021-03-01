@@ -19,7 +19,7 @@ class BarangController extends Controller
      */
     public function index(Request $request)
     {
-        $data = Barang::select("*"); 
+        $data = Barang::select("*")->with('decstock'); 
         if ($request->keyword) {
             $query = $request->keyword;     
             $data->where(function ($q) use($query){
@@ -88,7 +88,7 @@ class BarangController extends Controller
         $input['name_barang'] = $request->name_barang;
         $input['jenis'] = $request->jenis;
         $input['stock'] = $request->stock;
-        $input['dec_stock'] = $request->dec_stock;
+        // $input['dec_stock'] = $request->dec_stock;
         $input['harga'] = $request->harga;
 
         // $barang = Barang::save();
@@ -131,17 +131,17 @@ class BarangController extends Controller
 
     // }
 
-    // public function transaksiHistory(User $user)
-    // {
-    //     $getuser = Auth::user();
-    //     $userId = $getuser['id'];    
-    //     $barang = $user->find($userId)->barang()->orderBy("id", "desc")->get("*");
-    //     $count = count($barang);
-    //     for ($i=0; $i < $count; $i++) {
-    //         $barang[$i]['Bought'] = Carbon::parse($barang[$i]['created_at'])->diffForHumans();
-    //     }
-    //     return response()->json(["message" => "success", "data" => $barang], 200);
-    // }
+    public function transaksiHistory(User $user)
+    {
+        $getuser = Auth::user();
+        $userId = $getuser['id'];    
+        $barang = $user->find($userId)->decstock()->orderBy("id", "desc")->get("*");
+        $count = count($barang);
+        for ($i=0; $i < $count; $i++) {
+            $barang[$i]['Bought'] = Carbon::parse($barang[$i]['created_at'])->diffForHumans();
+        }
+        return response()->json(["message" => "success", "data" => $barang], 200);
+    }
 
     /**
      * Display the specified resource.

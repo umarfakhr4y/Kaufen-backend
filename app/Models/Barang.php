@@ -37,4 +37,9 @@ class Barang extends Model
     public function img(){
 		return $this->hasMany(Image::class, 'image_id');
 	}
+
+    public function decstock()
+    {       
+        return $this->hasMany(Decstock::class, 'barang_id');
+    }
 }
