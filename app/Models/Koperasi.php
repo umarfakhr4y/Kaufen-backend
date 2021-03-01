@@ -14,7 +14,8 @@ class Koperasi extends Model
         'jenis',
         'stock',
         'harga',
-        'image'
+        'image',
+        'user_id'
 
     ];
 

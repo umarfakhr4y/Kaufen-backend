@@ -60,7 +60,9 @@ Route::group(['middleware' => 'auth:api'], function(){
     // Data Diri
         Route::post('/data/data-diri', 'App\Http\Controllers\DataController@store');                  // Add data diri    
         //Route::get('/data/show', 'App\Http\Controllers\DataController@showSelf');                   // show data diri diambil dari user/detail
-        Route::put('/data/edit', 'App\Http\Controllers\DataController@updateSelf');                   // show data diri
+        Route::put('/data/edit', 'App\Http\Controllers\DataController@updateSelf'); 
+        Route::resource('/data', 'App\Http\Controllers\DataController');                                // Full Controll data diri all members
+    // show data diri
 
 
 
@@ -84,7 +86,6 @@ Route::group(['middleware' => ['auth:api', 'role:admin']], function() {
     Route::get('/users', 'App\Http\Controllers\UserController@allDetails');                         // Get All User With Data
     Route::post('/register', 'App\Http\Controllers\UserController@register');
 
-    Route::resource('/data', 'App\Http\Controllers\DataController');                                // Full Controll data diri all members
     Route::resource('/pinjam', 'App\Http\Controllers\LoansController');
     Route::resource('/nabung', 'App\Http\Controllers\DepositController');    
     Route::resource('/barang-koperasi', 'App\Http\Controllers\KoperasiController'); 

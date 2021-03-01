@@ -60,7 +60,11 @@ class KoperasiController extends Controller
         if($validator->fails()) {
             return response()->json(["error" => $validator->errors()], 500);
         }  
+        
+        $getuser = Auth::user();
+        $userId = $getuser['id'];
         $input = $request->all();
+        $input['user_id'] = $userId;
         $input['name'] = $request->name;
         $input['jenis'] = $request->jenis;
         $input['stock'] = $request->stock;
