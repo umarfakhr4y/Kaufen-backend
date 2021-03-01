@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Decstock;
 use App\Models\Barang;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Image;
