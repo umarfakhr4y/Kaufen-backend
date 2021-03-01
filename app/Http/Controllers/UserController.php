@@ -98,7 +98,7 @@ class UserController extends Controller
 
     public function allDetails()
     {
-        $user = User::with('data')->orderBy('name')->get();
+        $user = User::with('data')->orderBy("name", "asc")->get();
         // unset($user['role']);
         return response()->json(['success' => $user], $this->successStatus);
     }

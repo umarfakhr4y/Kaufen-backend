@@ -16,7 +16,8 @@ class Barang extends Model
         'stock',
         'jenis',
         'harga',
-        'image'
+        'image',
+        'dec_stock'
     ];
     
     public function data()

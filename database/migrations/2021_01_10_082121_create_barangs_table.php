@@ -20,6 +20,7 @@ class CreateBarangsTable extends Migration
             // $table->string("name", 191);
             $table->string("name_barang", 191);
             $table->integer("stock");            
+            $table->integer("dec_stock")->nullable();            
             $table->string("jenis", 191);
             $table->integer("harga");
             $table->string("image");

@@ -45,6 +45,10 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/pinjam/history', 'App\Http\Controllers\LoansController@history');                  // History Loan
     Route::get('/nabung/history', 'App\Http\Controllers\DepositController@history');                // Deposit Loan
 
+        // Transaksi history
+    Route::post('/transaksi/dec_stock', 'App\Http\Controllers\BarangController@decStock');         // History Barang Koperasi
+
+
     // Update User
         Route::put('/user/update-profile', 'App\Http\Controllers\UserController@updateProf');       // Update Profile      
         Route::get('change-password', 'App\Http\Controllers\ChangePasswordController@index');
