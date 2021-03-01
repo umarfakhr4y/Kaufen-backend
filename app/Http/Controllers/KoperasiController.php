@@ -102,6 +102,7 @@ class KoperasiController extends Controller
         $count = count($koperasi);
         for ($i=0; $i < $count; $i++) {
             $koperasi[$i]['created'] = Carbon::parse($koperasi[$i]['created_at'])->diffForHumans();
+            $koperasi[$i]['updated'] = Carbon::parse($koperasi[$i]['updated_at'])->diffForHumans();
         }
         return response()->json(["message" => "success", "data" => $koperasi], 200);
     }
