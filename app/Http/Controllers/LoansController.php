@@ -17,11 +17,11 @@ class LoansController extends Controller
      */
     public function index(Request $request)
     {
-        $data = Loans::select("*"); 
+        $data = Loans::select("*")->orderBy("created_at", "asc"); 
         if ($request->keyword) {
             $query = $request->keyword;     
             $data->where(function ($q) use($query){
-                $q->where('name','LIKE', "%".$query."%")//untuk membuat fitur search ( "%{$query}%" / "%".$query."%" )
+                $q->where('total','LIKE', "%".$query."%")//untuk membuat fitur search ( "%{$query}%" / "%".$query."%" )
                  ->orwhere('return','LIKE', "%".$query."%");
             });
         }

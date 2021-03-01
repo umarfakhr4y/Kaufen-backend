@@ -20,7 +20,7 @@ class BarangController extends Controller
      */
     public function index(Request $request)
     {
-        $data = Barang::select("*")->with('decstock'); 
+        $data = Barang::select("*")->orderBy("name_barang", "asc")->with('decstock'); 
         if ($request->keyword) {
             $query = $request->keyword;     
             $data->where(function ($q) use($query){

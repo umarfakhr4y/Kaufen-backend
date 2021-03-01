@@ -20,7 +20,7 @@ class KoperasiController extends Controller
      */
     public function index(Request $request)
     {
-        $data = Koperasi::select("*");
+        $data = Koperasi::select("*")->orderBy("name", "asc");
         if ($request->keyword) {
             $query = $request->keyword;     
             $data->where(function ($q) use($query){
