@@ -112,7 +112,7 @@ class UserController extends Controller
         return response()->json(["user" => $users], 200);
     }
 
-    // Get User By ID
+    //Get User By ID
     public function getUserById($id) {
         if (User::where('id', $id)->exists()) {
             return response()->json(["user" => User::where('id', $id)->get()], 200);
@@ -120,7 +120,7 @@ class UserController extends Controller
             return response()->json(["error" => "ID Not Found In Users !"], 404);
         }
     }
-    // End Get User By ID
+    //End Get User By ID
 
     public function delete(User $user)  //self deleting
     {

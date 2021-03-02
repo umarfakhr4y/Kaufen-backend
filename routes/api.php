@@ -37,7 +37,7 @@ Route::post('password/reset', 'App\Http\Controllers\ResetPasswordController@rese
 Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/logout', 'App\Http\Controllers\UserController@logout');
     Route::get('user/detail', 'App\Http\Controllers\UserController@details');                       // Detail Current User
-    Route::get('user/{id}', 'App\Http\Controllers\UserController@getUserById');                       // Detail Current User
+    // Route::get('user/{id}', 'App\Http\Controllers\UserController@getUserById');                       // Detail Current User
     
     // History
     Route::get('/barang-koperasi/history', 'App\Http\Controllers\KoperasiController@history');      // History Barang Koperasi
@@ -82,7 +82,7 @@ Route::group(['middleware' => 'auth:api'], function(){
 // Admin Role
 Route::group(['middleware' => ['auth:api', 'role:admin']], function() {        
     Route::get('/user/{role}', 'App\Http\Controllers\UserController@getUsersByRole');               // Get All User By Role   
-    Route::get('/user/{id}', 'App\Http\Controllers\UserController@getUserByID');                    // Get User By ID
+    Route::get('/users/{id}', 'App\Http\Controllers\UserController@getUserByID');                    // Get User By ID
     Route::get('/users', 'App\Http\Controllers\UserController@allDetails');                         // Get All User With Data
     Route::post('/register', 'App\Http\Controllers\UserController@register');
 
