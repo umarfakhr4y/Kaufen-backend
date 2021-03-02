@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             'email' => 'damar.rizki212@gmail.com',
             "email_verified_at" => now()->timezone('Asia/Jakarta'),
             'password' => Hash::make('123456789'),
-            'image' => 'img_profile/damar.jpg'
+            'image' => 'damar.jpg'
         ]);
 
         $damar->assignRole('admin');
@@ -41,7 +41,7 @@ class UserSeeder extends Seeder
             'email' => 'ibrahimahmad8896@gmail.com',
             "email_verified_at" => now()->timezone('Asia/Jakarta'),
             'password' => Hash::make('123456789'),
-            'image' => 'img_profile/baim.jpg'
+            'image' => 'baim.jpg'
         ]);
 
         $baim->assignRole('admin');
@@ -51,7 +51,7 @@ class UserSeeder extends Seeder
             'email' => 'akmalilhamstp@gmail.com',
             "email_verified_at" => now()->timezone('Asia/Jakarta'),
             'password' => Hash::make('123456789'),
-            'image' => 'img_profile/akmal.jpg'
+            'image' => 'akmal.jpg'
         ]);
 
         $akmal->assignRole('admin');
@@ -71,7 +71,7 @@ class UserSeeder extends Seeder
             'email' => 'hanifflu12@gmail.com',
             "email_verified_at" => now()->timezone('Asia/Jakarta'),
             'password' => Hash::make('123456789'),
-            'image' => 'img_profile/hanif_fadhlu.jpg'
+            'image' => 'hanif_fadhlu.jpg'
         ]);
 
         $padlu->assignRole('admin');
@@ -81,7 +81,7 @@ class UserSeeder extends Seeder
             'email' => 'erlanggadithya97@gmail.com',
             "email_verified_at" => now()->timezone('Asia/Jakarta'),
             'password' => Hash::make('123456789'),
-            'image' => 'img_profile/erlangga.jpg'
+            'image' => 'erlangga.jpg'
         ]);
 
         $bongga->assignRole('admin');
@@ -91,7 +91,7 @@ class UserSeeder extends Seeder
             'email' => 'm.hasanmunif@gmail.com',
             "email_verified_at" => now()->timezone('Asia/Jakarta'),
             'password' => Hash::make('123456789'),
-            'image' => 'img_profile/munif.jpg'
+            'image' => 'munif.jpg'
         ]);
 
         $ebed->assignRole('admin');

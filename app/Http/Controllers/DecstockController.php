@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Decstock;
+use Carbon\Carbon;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 
 class DecstockController extends Controller
@@ -82,5 +85,17 @@ class DecstockController extends Controller
     public function destroy(Decstock $decstock)
     {
         //
+    }
+
+    public function history(User $user)
+    {
+        $getuser = Auth::user();
+        $userId = $getuser['id'];
+        $koperasi = $user->find($userId)->koperasi()->orderBy("id", "desc")->get("*");
+        $count = count($koperasi);
+        for ($i=0; $i < $count; $i++) {           
+            $koperasi[$i]['created'] = Carbon::parse($koperasi[$i]['created_at'])->diffForHumans();
+        }
+        return response()->json(["message" => "success", "data" => $koperasi], 200);
     }
 }
