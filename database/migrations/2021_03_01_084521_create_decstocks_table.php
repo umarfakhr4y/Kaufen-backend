@@ -15,6 +15,7 @@ class CreateDecstocksTable extends Migration
     {
         Schema::create('decstocks', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
             $table->bigInteger("barang_id")->unsigned();
             $table->integer("dec_stock");
             $table->timestamps();

@@ -61,7 +61,7 @@ class UserSeeder extends Seeder
             'email' => 'farhankhosyi@gmail.com',
             "email_verified_at" => now()->timezone('Asia/Jakarta'),
             'password' => Hash::make('123456789'),
-            'image' => 'img/Hands-Give.png'
+            'image' => 'Hands-Give.png'
         ]);
 
         $farhan->assignRole('admin');
@@ -75,6 +75,7 @@ class UserSeeder extends Seeder
         ]);
 
         $padlu->assignRole('admin');
+
 
         $bongga = User::create([                                        // bongga
             'name' => 'erlangga adithya',
@@ -101,7 +102,7 @@ class UserSeeder extends Seeder
             'email' => 'kaufen.market@gmail.com',
             "email_verified_at" => now()->timezone('Asia/Jakarta'),
             'password' => Hash::make('123456789'),
-            'image' => 'img/kaufen_market.png'
+            'image' => 'kaufen_market.png'
         ]);
 
         $kaufen->assignRole('admin');
@@ -111,7 +112,7 @@ class UserSeeder extends Seeder
             'email' => 'anggota@role.test',
             "email_verified_at" => now()->timezone('Asia/Jakarta'),
             'password' => Hash::make('123456789'),
-            'image' => 'img/Hands-Give.png'
+            'image' => 'Hands-Give.png'
         ]);
 
         $anggota->assignRole('anggota');
@@ -121,7 +122,7 @@ class UserSeeder extends Seeder
             'email' => 'penjual@role.test',
             "email_verified_at" => now()->timezone('Asia/Jakarta'),
             'password' => Hash::make('123456789'),
-            'image' => 'img/Hands-Give.png'
+            'image' => 'Hands-Give.png'
         ]);
 
         $penjual->assignRole('penjual');

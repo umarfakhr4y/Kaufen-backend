@@ -46,8 +46,8 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/nabung/history', 'App\Http\Controllers\DepositController@history');                // Deposit Loan
 
         // Transaksi history
-    Route::post('/transaksi/dec_stock', 'App\Http\Controllers\DecstockController@store');         // Barang Transaksi
-    Route::post('/transaksi/dec_stock', 'App\Http\Controllers\DecstockController@decStock');         // History Barang Koperasi
+        Route::post('/transaksi/dec-stock', 'App\Http\Controllers\DecstockController@store');         // Barang Transaksi
+        Route::get('/transaksi/history', 'App\Http\Controllers\DecstockController@history');         // History Barang Koperasi
 
 
     // Update User

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Decstock;
 use Carbon\Carbon;
 use App\Models\User;
+
 
 use Illuminate\Http\Request;
 
@@ -39,7 +41,14 @@ class DecstockController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dec = new Decstock;
+        $dec->barang_id = $request->barang_id;
+        $dec->dec_stock = $request->dec_stock;   
+        if ($dec->save()) {
+            return ["status" => "Berhasil Menyimpan decrement"];
+        } else {
+            return ["status" => "Gagal Menyimpan decrement"];
+        }
     }
 
     /**
@@ -84,18 +93,23 @@ class DecstockController extends Controller
      */
     public function destroy(Decstock $decstock)
     {
-        //
+        $dec = Decstock::where('id', $id)->first();
+        if ($dec->delete()) {
+            return ["status" => "Berhasil Menghapus Data"];
+        } else {
+            return ["status" => "Berhasil Menghapus Data"];
+        }
     }
 
     public function history(User $user)
     {
         $getuser = Auth::user();
         $userId = $getuser['id'];
-        $koperasi = $user->find($userId)->koperasi()->orderBy("id", "desc")->get("*");
-        $count = count($koperasi);
+        $decStock = $user->find($userId)->barang()->orderBy("id", "desc")->get("*");
+        $count = count($decStock);
         for ($i=0; $i < $count; $i++) {           
-            $koperasi[$i]['created'] = Carbon::parse($koperasi[$i]['created_at'])->diffForHumans();
+            $decStock[$i]['created'] = Carbon::parse($decStock[$i]['created_at'])->diffForHumans();
         }
-        return response()->json(["message" => "success", "data" => $koperasi], 200);
+        return response()->json(["message" => "success", "data" => $decStock], 200);
     }
 }
